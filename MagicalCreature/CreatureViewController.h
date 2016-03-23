@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MagicalCreature.h"
 
 @interface CreatureViewController : UIViewController
-@property NSString *nameLableText;
-@property NSString *changedName;
+//@property NSString *str;
+@property MagicalCreature *mc;
 
 @end

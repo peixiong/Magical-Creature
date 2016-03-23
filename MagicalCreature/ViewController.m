@@ -10,10 +10,10 @@
 #import "MagicalCreature.h"
 #import "CreatureViewController.h"
 
-@interface ViewController () <UITableViewDataSource, UITabBarDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
+//@property NSMutableArray *creatures;
 @property NSMutableArray *creatures;
-
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
@@ -22,12 +22,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     MagicalCreature *monster1 = [[MagicalCreature alloc] initWithName:@"MonMonster"];
     MagicalCreature *monster2 = [[MagicalCreature alloc] initWithName:@"TueMonster"];
     MagicalCreature *monster3 = [[MagicalCreature alloc] initWithName:@"WedMonster"];
-    
-    self.creatures = [NSMutableArray arrayWithObjects:monster1, monster2, monster3, nil];
+    self.creatures = [[NSMutableArray alloc] initWithObjects:monster1,monster2, monster3, nil];
+
+    //self.creatures = [[NSMutableArray alloc] arrayWithObjects:monster1, monster2, monster3, nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self.tableView reloadData];
 }
 
 
@@ -55,8 +60,10 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     CreatureViewController *dvc = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    MagicalCreature *mc = [self.creatures objectAtIndex:indexPath.row];
-    dvc.nameLableText = mc.name;
+    //dvc.str = [[self.creatures objectAtIndex:indexPath.row] name];
+    
+    MagicalCreature *magicCreature = [self.creatures objectAtIndex:indexPath.row];
+    dvc.mc = magicCreature;
 }
 
 

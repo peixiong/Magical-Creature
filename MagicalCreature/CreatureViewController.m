@@ -16,7 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.textField.text = self.nameLableText;
     self.textField.enabled = NO;
 }
 
@@ -25,8 +24,8 @@
         self.textField.enabled = NO;
         self.editing = false;
         self.navigationItem.rightBarButtonItem.title = @"Edit";
-        self.changedName = self.textField.text;
-        
+        self.mc.name = self.textField.text;
+        //self.textField.text = self.str;
         
     } else {
         self.textField.enabled = YES;
@@ -34,8 +33,6 @@
         self.navigationItem.rightBarButtonItem.title = @"Done";
         
     }
-
-    
 }
 
 
